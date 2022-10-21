@@ -1,15 +1,13 @@
-from flask import Flask, request
-from flask_cors import CORS, cross_origin
+from flask import Flask
+import json
+
 
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
 
 
-@app.route('/')
-@cross_origin(supports_credentials=True)
+@app.route('/hello')
 def hello():
-    name = request.args.get("name", "World")
-    return f'Hello, {name}!'
+    return json.dumps({'hello': 'hi'})
 
 
-app.run()
+app.run(host='0.0.0.0', port=8090)
